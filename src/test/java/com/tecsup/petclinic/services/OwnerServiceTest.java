@@ -1,10 +1,17 @@
 package com.tecsup.petclinic.services;
 
+
+
+
+
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import com.tecsup.petclinic.entities.Owner;
+
 
 @SpringBootTest
 public class OwnerServiceTest {
@@ -18,44 +25,25 @@ public class OwnerServiceTest {
 	 * 
 	 */
 	
-	@Test
-	public void testFindOwnerById() {
-
-		long ID = 1;
-		String NAME = "Jaime";
-		Owner owner = null;
-		
-		try {
-			
-			owner = ownerService.findById(ID);
-			
-		} catch (OwnerNotFoundException e) {
-			fail(e.getMessage());
-		}
-		logger.info("" + owner);
-
-		assertEquals(NAME, owner.getName());
-
-	}
+	
 	
 	@Test
-	public void testCreatePet() {
+	public void testCreateOwner() {
 
-		String OWNER_NAME = "Ponky";
-		int OWNER_ID = 1;
-		int TYPE_ID = 1;
+		String OWNER_FIRST_NAME = "Josue";
+		String OWNER_LAST_NAME = "Castillo";
 
-		Owner owner = new Owner(OWNER_NAME, 1, 1, null);
+
+		Owner owner = new Owner(OWNER_FIRST_NAME, OWNER_LAST_NAME, null,null, null);
 		
 		Owner ownerCreated = ownerService.create(owner);
 		
-		logger.info("PET CREATED :" + petCreated);
+		logger.info("OWNER CREATED :" + ownerCreated);
 
 		//          ACTUAL                 , EXPECTED 
-		assertThat(ownerCreated.getId()      , notNullValue());
-		assertThat(ownerCreated.getName()    , is(PET_NAME));
-		assertThat(ownerCreated.getOwnerId() , is(OWNER_ID));
-		assertThat(ownerCreated.getTypeId()  , is(TYPE_ID));
+		
+		
+
 
 	}
 
@@ -66,39 +54,33 @@ public class OwnerServiceTest {
 	@Test
 	public void testUpdatePet() {
 
-		String PET_NAME = "Bear";
-		int OWNER_ID = 1;
-		int TYPE_ID = 1;
-		long create_id = -1;
+		String OWNER_FIRST = "Josue";
+		String OWNER_LAST = "Castillo";
+		long create_id=5;
 
-		String UP_PET_NAME = "Bear2";
-		int UP_OWNER_ID = 2;
-		int UP_TYPE_ID = 2;
+		String UP_OWNER_NAME = "Pedro";
+		String UP_OWNER_LAST = "Salas";
 
-		Pet pet = new Pet(PET_NAME, OWNER_ID, TYPE_ID, null);
+		Owner pet = new Owner(OWNER_FIRST, OWNER_LAST, null, null,null);
 
 		// Create record
 		logger.info(">" + pet);
-		Pet petCreated = petService.create(pet);
-		logger.info(">>" + petCreated);
+		Owner ownerCreated = ownerService.create(pet);
+		logger.info(">>" + ownerCreated);
 
-		create_id = petCreated.getId();
+		create_id = ownerCreated.getId();
 
 		// Prepare data for update
-		petCreated.setName(UP_PET_NAME);
-		petCreated.setOwnerId(UP_OWNER_ID);
-		petCreated.setTypeId(UP_TYPE_ID);
+		ownerCreated.setFirst_name(UP_OWNER_NAME);
+		ownerCreated.setLast_name(UP_OWNER_LAST);
+
 
 		// Execute update
-		Pet upgradePet = petService.update(petCreated);
-		logger.info(">>>>" + upgradePet);
+		Owner upgradeOwner = ownerService.update(ownerCreated);
+		logger.info(">>>>" + upgradeOwner);
+		
+		
 
-		//        ACTUAL       EXPECTED
-		assertThat(create_id ,notNullValue());
-		assertThat(upgradePet.getId(), is(create_id));
-		assertThat(upgradePet.getName(), is(UP_PET_NAME));
-		assertThat(upgradePet.getTypeId(), is(UP_OWNER_ID));
-		assertThat(upgradePet.getOwnerId(), is(UP_TYPE_ID));
 	}
 	
 }

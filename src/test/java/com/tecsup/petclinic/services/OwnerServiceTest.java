@@ -29,7 +29,7 @@ public class OwnerServiceTest {
 			
 			owner = ownerService.findById(ID);
 			
-		} catch (OwnertNotFoundException e) {
+		} catch (OwnerNotFoundException e) {
 			fail(e.getMessage());
 		}
 		logger.info("" + owner);
@@ -41,21 +41,21 @@ public class OwnerServiceTest {
 	@Test
 	public void testCreatePet() {
 
-		String PET_NAME = "Ponky";
+		String OWNER_NAME = "Ponky";
 		int OWNER_ID = 1;
 		int TYPE_ID = 1;
 
-		Pet pet = new Pet(PET_NAME, 1, 1, null);
+		Owner owner = new Owner(OWNER_NAME, 1, 1, null);
 		
-		Pet petCreated = petService.create(pet);
+		Owner ownerCreated = ownerService.create(owner);
 		
 		logger.info("PET CREATED :" + petCreated);
 
 		//          ACTUAL                 , EXPECTED 
-		assertThat(petCreated.getId()      , notNullValue());
-		assertThat(petCreated.getName()    , is(PET_NAME));
-		assertThat(petCreated.getOwnerId() , is(OWNER_ID));
-		assertThat(petCreated.getTypeId()  , is(TYPE_ID));
+		assertThat(ownerCreated.getId()      , notNullValue());
+		assertThat(ownerCreated.getName()    , is(PET_NAME));
+		assertThat(ownerCreated.getOwnerId() , is(OWNER_ID));
+		assertThat(ownerCreated.getTypeId()  , is(TYPE_ID));
 
 	}
 

@@ -4,6 +4,11 @@ package com.tecsup.petclinic.services;
 
 
 
+import static org.assertj.core.api.Assertions.fail;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.tecsup.petclinic.entities.Owner;
-
+import com.tecsup.petclinic.exception.OwnerNotFoundException;
 
 @SpringBootTest
 public class OwnerServiceTest {
@@ -52,7 +57,7 @@ public class OwnerServiceTest {
 	 * 
 	 */
 	@Test
-	public void testUpdatePet() {
+	public void testUpdateOwner() {
 
 		String OWNER_FIRST = "Josue";
 		String OWNER_LAST = "Castillo";
@@ -61,11 +66,11 @@ public class OwnerServiceTest {
 		String UP_OWNER_NAME = "Pedro";
 		String UP_OWNER_LAST = "Salas";
 
-		Owner pet = new Owner(OWNER_FIRST, OWNER_LAST, null, null,null);
+		Owner owner = new Owner(OWNER_FIRST, OWNER_LAST, null, null,null);
 
 		// Create record
-		logger.info(">" + pet);
-		Owner ownerCreated = ownerService.create(pet);
+		logger.info(">" + owner);
+		Owner ownerCreated = ownerService.create(owner);
 		logger.info(">>" + ownerCreated);
 
 		create_id = ownerCreated.getId();
@@ -80,6 +85,11 @@ public class OwnerServiceTest {
 		logger.info(">>>>" + upgradeOwner);
 		
 		
+		assertThat(create_id ,notNullValue());
+		assertThat(upgradeOwner.getId(), is(create_id));
+		assertThat(upgradeOwner.getFirst_name(), is(UP_OWNER_NAME));
+		assertThat(upgradeOwner.getLast_name(), is(UP_OWNER_LAST));
+
 
 	}
 	

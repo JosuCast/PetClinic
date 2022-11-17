@@ -10,7 +10,7 @@ public interface OwnerService {
 	
 	Owner create(Owner owner);
 	
-	Owner update(Owner pet);
+	Owner update(Owner owner);
 
 	/**
 	 * 
@@ -26,30 +26,6 @@ public interface OwnerService {
 	 */
 	Owner findById(long id) throws OwnerNotFoundException;
 
-	/**
-	 * 
-	 * @param name
-	 * @return
-	 */
-	List<Owner> findByName(String name);
 
-	/**
-	 * 
-	 * @param typeId
-	 * @return
-	 */
-	List<Owner> findByTypeId(int typeId);
 
-	/**
-	 * 
-	 * @param ownerId
-	 * @return
-	 */
-	List<Owner> findByOwnerId(int ownerId);
-
-	/**
-	 * 
-	 * @return
-	 */
-	Iterable<Owner> findAll();
 }

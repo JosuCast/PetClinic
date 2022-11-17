@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.tecsup.petclinic.entities.Owner;
 import com.tecsup.petclinic.entities.Pet;
@@ -13,6 +14,7 @@ import com.tecsup.petclinic.exception.OwnerNotFoundException;
 import com.tecsup.petclinic.exception.PetNotFoundException;
 import com.tecsup.petclinic.repositories.OwnerRepository;
 
+@Service
 public class OwnerServiceImpl implements OwnerService{
 	
 	private static final Logger logger = LoggerFactory.getLogger(PetServiceImpl.class);
@@ -46,37 +48,9 @@ public class OwnerServiceImpl implements OwnerService{
 		return owner.get();
 	}
 
-	@Override
-	public List<Owner> findByName(String name) {
-		List<Owner> owners = ownerRepository.findByName(name);
 
-		owners.stream().forEach(owner -> logger.info("" + owner));
 
-		return owners;
-	}
+	
 
-	@Override
-	public List<Owner> findByTypeId(int typeId) {
-		List<Owner> owners = ownerRepository.findByTypeId(typeId);
-
-		owners.stream().forEach(pet -> logger.info("" + pet));
-
-		return owners;
-	}
-
-	@Override
-	public List<Owner> findByOwnerId(int ownerId) {
-		List<Owner> owners = ownerRepository.findByOwnerId(ownerId);
-
-		owners.stream().forEach(owner -> logger.info("" + owner));
-
-		return owners;
-	}
-
-	@Override
-	public Iterable<Owner> findAll() {
-		// TODO Auto-generated 
-				return ownerRepository.findAll();
-	}
 
 }

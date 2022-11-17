@@ -48,6 +48,12 @@ public class OwnerServiceImpl implements OwnerService{
 		return owner.get();
 	}
 
+	@Override
+	public Iterable<Owner> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 	

@@ -8,6 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
@@ -50,6 +54,7 @@ public class Pet {
 		this.typeId = type_id;
 		this.ownerId = owner_id;
 		this.birthDate = birth_date;
+
 	}
 
 	public long getId() {
@@ -86,9 +91,13 @@ public class Pet {
 
 	@Override
 	public String toString() {
+
 		return "Pet [id=" + id + ", name=" + name + ", typeId=" + typeId + ", ownerId=" + ownerId + ", birth_date="
 				+ birthDate + "]";
+
 	}
+
+
 
 	public Date getBirthDate() {
 		return birthDate;

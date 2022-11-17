@@ -100,12 +100,12 @@ public class OwnerControllerTest {
     public void testCreateOwner() throws Exception {
 		
     	String FIRST_NAME = "Aldair";
-		String LAST_NAME = "Huamani";
+		String LAST_NAME = "Castillo";
 		String ADDRESS = "Example Adress";
 		String CITY = "City example";
 		String TELEPHONE = "123456789";
 		
-		OwnerDTO newOwner = new OwnerDTO(FIRST_NAME,  LAST_NAME,  ADDRESS,  CITY,  TELEPHONE);
+		OwnerDTO newOwner = new OwnerDTO(FIRST_NAME,LAST_NAME,ADDRESS,CITY,TELEPHONE);
 	    
 		logger.info(newOwner.toString());
 		logger.info(om.writeValueAsString(newOwner));

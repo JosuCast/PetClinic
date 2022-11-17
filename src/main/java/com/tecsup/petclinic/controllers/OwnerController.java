@@ -65,6 +65,10 @@ public class OwnerController {
 		Owner owner = new Owner();
 		owner.setFirst_name(newOwner.getFirst_name());
 		owner.setId(newOwner.getId());
+		owner.setLast_name(newOwner.getLast_name());
+		owner.setCity(newOwner.getCity());
+		owner.setAddress(newOwner.getAddress());
+		owner.setTelephone(newOwner.getTelephone());
 		return service.create(owner);
 	}
 	
